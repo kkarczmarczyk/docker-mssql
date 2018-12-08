@@ -23,7 +23,12 @@ Microsoft SQL Server docker image with .sql startup file, based on official micr
     - **Standard** : This will run the container using the Standard Edition
     - **Enterprise** : This will run the container using the Enterprise Edition
     - **EnterpriseCore** : This will run the container using the Enterprise Edition Core
-    
+ 
+
+## Additional startup .sql script
+
+You can execute additional .sql file for database from outside of container at database startup. This container exposes volume `/usr/sql` - if you link this volume with local folder which contains `query.sql` file, queries inside file will be executed.
+   
 ## Docker compose
 
 This is an example `docker-compose.yaml` file:
@@ -45,5 +50,11 @@ services:
     - ./{folder with query.sql file}:/usr/sql
 ```
 
+## Misc
 
-Note: This image is inspired by [https://github.com/mcmoe/mssqldocker/blob/master/Dockerfile](https://github.com/mcmoe/mssqldocker/blob/master/Dockerfile)
+This image is inspired by:
+ - [https://github.com/mcmoe/mssqldocker/blob/master/Dockerfile](https://github.com/mcmoe/mssqldocker/blob/master/Dockerfile)
+ - [https://github.com/Microsoft/sql-server-samples/tree/master/samples/containers/replication/db2](https://github.com/Microsoft/sql-server-samples/tree/master/samples/containers/replication/db2)
+ - [https://github.com/twright-msft/mssql-node-docker-demo-app](https://github.com/twright-msft/mssql-node-docker-demo-app)
+
+Note: By using this container, you accept SQL Server [EULA](https://go.microsoft.com/fwlink/?linkid=857698). Go to [https://hub.docker.com/r/microsoft/mssql-server/](https://hub.docker.com/r/microsoft/mssql-server/) for more details.
